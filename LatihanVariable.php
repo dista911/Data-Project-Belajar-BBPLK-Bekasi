@@ -1,16 +1,15 @@
 <?php
 
 //Variabel a
-$a = "Toni Stark";
+$a1 = "Toni Stark";
 $b = "Spiderman";
 
-echo $a;
+echo $a1;
 echo "<br>";
 echo $b;
 echo "<br>";
-echo "$a";
+echo "$a1";
 echo "<br>";
 echo '$b';
-
 
 ?>
