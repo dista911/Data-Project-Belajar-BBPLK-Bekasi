@@ -11,11 +11,22 @@
 </head>
 <body>
 	<?php
-		$nama=$_POST['nama'];
+		/*$nama=$_POST['nama'];
 		$harga=$_POST['harga'];
 		$jumlah=$_POST['jumlah'];
 		$totalharga = $harga*$jumlah;
-		setcookie("totalharga", $totalharga)
+		setcookie("totalharga", $totalharga)*/
+		$nama=$_POST['nama'];
+		$harga=$_POST['harga'];
+		$jumlah=$_POST['jumlah'];
+		$totalharga=$harga*$jumlah;
+		setcookie("totalharga", $totalharga);
+		if ($jumlah>=10){
+		 	$diskon=$totalharga * 0.05;
+				}else{
+			$diskon=0;
+		} 
+		$grandtotal=$totalharga-$diskon
 	?>
 	<div class="container">
 		<div class="row">
@@ -62,6 +73,14 @@
   							<input class="form-control mb-2 w-75" type="number" name="totalharga" value="<?php echo $totalharga;?>" id="totalharga">
   						</div>
   						<div class="form-group row min-0">
+  							<label class="col-sm-2 col-form-label">Diskon :</label>
+  							<input class="form-control mb-2 w-75" type="number" value="<?php echo $diskon;?>">
+  						</div>
+  						<div class="form-group row min-0">
+  							<label class="col-sm-2 col-form-label">Grand Total :</label>
+  							<input class="form-control mb-2 w-75" type="number" name="grandtotal" id="grandtotal" value="<?php echo $grandtotal;?>" readonly>
+  						</div>
+  						<div class="form-group row min-0">
   							<label class="col-sm-2 col-form-label" for="bayar">Uang Bayar :</label>
   							<input class="form-control mb-2 w-75" type="number" min=0 name="bayar" onchange="getKembali()" onkeyup="getKembali()" id="bayar" required="">
   						</div>
@@ -84,8 +103,11 @@
 			var totalharga = document.getElementById('totalharga').value
 			var bayar = document.getElementById('bayar').value
 
-			var kembali = bayar - totalharga
-			document.getElementById('kembali').value = kembali 
+			var grandtotal = document.getElementById('grandtotal').value
+
+			var kembali = bayar - grandtotal
+			document.getElementById('kembali').value = kembali
+
 			console.log(kembali)
 		}
 	</script>
